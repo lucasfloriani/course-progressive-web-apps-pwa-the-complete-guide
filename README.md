@@ -39,14 +39,14 @@ Arquivo manifest.json adicionado a sua aplicação, onde este possibilitará a f
 * **name**: Nome do nosso PWA, que será usado em vários lugares, como por exemplo na tela de abertura do app;
 * **short_name**: Versão reduzida do nome do nosso PWA, usado por exemplo abaixo do icone salvo na homescreen;
 * **start_url**: Url na qual o PWA vai abrir inicialmente na homepage;
-* **scope**: Quais páginas são incluídas em nossa "Experiência PWA";
+* **scope**: Quais páginas são incluídas em nossa "Experiência PWA" (standalone (como app), fullscreen (como um app fullscreen), minimal-ui (standalone com menos ui) ou browser (abrir no navegador));
 * **display**: Se uma aplicação é standalone, o qual é se o browser realmente precisa controlar a aplicação ("standalone" == default);
 * **background_color**: Cor de fundo usado nos carregamentos e na tela de abertura;
 * **theme_color**: Cor de tema, usado por exemplo na barra do topo de uma aplicação;
 * **description**: Usado quando um usuário salva o app nos favoritos do browser, substituindo a descrição padrão que o browser adiciona;
 * **dir**: Usado para demonstrar qual a direção de leitura do app;
 * **lang**: Principal linguagem do app;
-* **orientation**: Qual orientação default ele deve carregar do dispositivo, "deitado" (landscape-primary) ou "de pé" (portrait-primary);
+* **orientation**: Qual orientação default ele deve carregar do dispositivo, "deitado" (landscape-primary), "de pé" (portrait-primary) ou qualquer (any);
 * **icons**: Lista de icones onde o aplicativo ira utilizar o qual melhor se adapta a resolução do dispositivo, usado por exemplo na homescreen;
 * **related_applications**: Lista de aplicações realmente nativas relacionadas
 
