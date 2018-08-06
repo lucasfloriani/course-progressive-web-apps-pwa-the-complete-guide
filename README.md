@@ -29,3 +29,58 @@ Podemos listar funcionalidades especificas que são possíveis através de servi
 ## O que significa "Progressive Enhancement" (Aprimoramento Progressivo)
 
 Possibilidade de adicionar aos poucos quais funcionalidades da PWA quiser a sua aplicação.
+
+## Web App Manifest
+
+Arquivo manifest.json adicionado a sua aplicação, onde este possibilitará a função de salvar seu aplicativo na sua homescreen.
+
+### Propriedades do arquivo manifest.json
+
+* **name**: Nome do nosso PWA, que será usado em vários lugares, como por exemplo na tela de abertura do app;
+* **short_name**: Versão reduzida do nome do nosso PWA, usado por exemplo abaixo do icone salvo na homescreen;
+* **start_url**: Url na qual o PWA vai abrir inicialmente na homepage;
+* **scope**: Quais páginas são incluídas em nossa "Experiência PWA";
+* **display**: Se uma aplicação é standalone, o qual é se o browser realmente precisa controlar a aplicação ("standalone" == default);
+* **background_color**: Cor de fundo usado nos carregamentos e na tela de abertura;
+* **theme_color**: Cor de tema, usado por exemplo na barra do topo de uma aplicação;
+* **description**: Usado quando um usuário salva o app nos favoritos do browser, substituindo a descrição padrão que o browser adiciona;
+* **dir**: Usado para demonstrar qual a direção de leitura do app;
+* **lang**: Principal linguagem do app;
+* **orientation**: Qual orientação default ele deve carregar do dispositivo, "deitado" (landscape-primary) ou "de pé" (portrait-primary);
+* **icons**: Lista de icones onde o aplicativo ira utilizar o qual melhor se adapta a resolução do dispositivo, usado por exemplo na homescreen;
+* **related_applications**: Lista de aplicações realmente nativas relacionadas
+
+```node
+{
+  "name": "Sweaty - Activity Tracker",
+  "short_name": "Sweaty",
+  "start_url": "/index.html",
+  "scope": ".", // . == Todas as páginas
+  "display": "standalone",
+  "background_color": "#fff",
+  "theme_color": "3F51B5",
+  "description": "Keep running until you're super sweaty!",
+  "dir": "ltr",
+  "lang": "en-US",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/src/images/icons/app-icon-48x48.png", // Icon path
+      "type": "image/png", // Image type
+      "sizes": "48x48" // Icon size
+    },
+    {
+      "src": "/src/images/icons/app-icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    }
+  ],
+  "related_applications": [
+    {
+      "plataform": "play",
+      "url": "https://play.google.com/store/apps/details?id=com.example.app1",
+      "id": "com.example.app1"
+    }
+  ]
+}
+```
