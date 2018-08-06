@@ -26,4 +26,6 @@ Podemos listar funcionalidades especificas que são possíveis através de servi
 * **Geolocation API**: Acesso a localização do usuário;
 * **Media API**: Acesso ao Microfone e Câmera do dispositivo do usuário.
 
+## O que significa "Progressive Enhancement" (Aprimoramento Progressivo)
 
+Possibilidade de adicionar aos poucos quais funcionalidades da PWA quiser a sua aplicação.
