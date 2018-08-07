@@ -93,6 +93,8 @@ Arquivo manifest.json adicionado a sua aplicação, onde este possibilitará a f
   * Um **start_url**;
   * Campo **display** precisa ser _fullscreen_, _standalone_ ou _minimal-ui_
 * Ter um **service worker** registrado em seu site;
+* O aplicativo não estiver instalado;
+* Conseguir o engajamento do heuristico do usuário (atualmente, o usuário deverá interagir com o dominio por pelo menos 30 segundos);
 * Estar hospedado sobre o protocolo **HTTPS** (requisito para utilizar um service worker);
 
 Com estes critérios atingidos, o Chrome irá disparar o evento _beforeinstallprompt_ que você pode usar para avisar o usuário para instalar seu Progressive Web App.
@@ -155,6 +157,46 @@ Interação do usuário quando aparece a notificação.
 Alguns browsers podem realizar sincronização em background, onde você armazena uma certa ação que não pode ser executada agora, e executa quando a conexão com a internet for restabelecida.
 Quando a conexão da internet for restabelecida, o browser emite um evento para assim poder realizar as ações necessárias.
 
-#### Service Worker Lifecycle
+### Service Worker Lifecycle
 
-Fases do ciclo de vida do Service Worker.
+#### Instalação (install)
+
+Momento que o service worker é instalado, onde podemos adicionar o código dentro do service worker enquanto ele é instalado.
+Executa somente quando é reconhecido alteração do arquivo service worker ou na primeira.
+
+#### Ativação (activate)
+
+É iniciado o evento quando não há nenhum outro service worker registrado, onde assim ele é ativado.
+Após a ativação do service worker, ele então controlará todas as páginas do escopo (baseado em suas configurações).
+
+### Service Workers FAQ
+
+**Service Worker são instalados cada atualização?**
+R: Não, enquanto o browser executa naturalmente o metodo _register()_ cada ver que recarregamos a página, ele não instala o service worker se o arquivo do service worker não tiver mudado. Se o arquivo mudou nem que seja 1 byte, ele instalará o novo service worker (mas espera até a ativação)
+
+**Posso desregistrar um Service Worker?**
+R: Sim, é possível, o seguinte código realiza a remoção:
+
+```node
+navigator.serviceWorker.getRegistrations().then(function(registrations) {
+  for(let registration of registrations) {
+    registration.unregister();
+  }
+});
+```
+
+**Meu aplicativo se comporta de maneira estranha/ Um novo Service Worker não está sendo instalado**
+R: Ele está provavelmente sendo instalado mas como ainda está aberto alguma tab/janela com o app aberto (no mesmo navegador). Novos service workers não ativam antes de todas as páginas do app rodando não forem fechadas. Tenha certeza de fazer isto e tentar novamente.
+
+**Posso ter multiplos eventListeners 'fetch' no service worker?**
+R: Sim é possível.
+
+**Posso ter multiplos service workers numa página?**
+R: Sim, mas somente em diferentes escopos. Você pode usar um service worker para o subdiretório _/help_ e outro para o resto da aplicação. O service worker mais especifico (=> /help) subscreve o outro neste escopo.
+
+**Service Workers comunicam com minha página/meu código javascript normal?**
+R: Sim, isso é possivel usando mensagem. Caso seja necessário verifique o seguinte link para mais informações  [http://craig-russell.co.uk/2016/01/29/service-worker-messaging.html#.W2nYhNJKiUl](http://craig-russell.co.uk/2016/01/29/service-worker-messaging.html#.W2nYhNJKiUl).
+Este link não seria especifico aos service workers, ele é aplicavel a todos os Web Workers.
+
+**Qual a diferença entre Web Workers e Service Workers?**
+R: Service Workers são um tipo especial de Web Workers. Web Workers tambem rodam em uma thread em background, desacoplado do DOM. Eles não continuam executando depois que a página é fechada. O Service Worker por outro lado, continua executando (dependendo do sistema operacional) e tambem é desacoplado de uma página.
