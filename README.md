@@ -134,3 +134,27 @@ Contem um escopo especifico, como por exemplo o dominio da página.
 São disponíveis para todas as páginas da sua aplicação, baseadas em seu dominio (dominio.com.br).
 Funcionam mesmo após as páginas da aplicação serem fechadas.
 São bons para reagir a **eventos especificos**, como por exemplo eventos de **push notification**.
+
+### Eventos "escutáveis" nos service workers
+
+#### Fetch
+
+Browser ou Javascript relacionado a uma página iniciando um Fetch (Http request). Qualquer requisição, podendo ser requisição de download de imagens para página, algo como um proxy, porem em requisições com XMLHttpRequest não iniciam o evento, como a biblioteca Axios que utiliza o XMLHttpRequest.
+Podemos bloquear, retornar assets no cache, podendo assim controlar as ações das requisições
+
+#### Push Notifications
+
+Navegadores como Chrome, Firefox, etc contem seus próprios servidores de Web Push Notification, onde são utilizado pelos service workers para enviar notificações aos usuários.
+
+#### Notification Interaction
+
+Interação do usuário quando aparece a notificação.
+
+#### Background Sync
+
+Alguns browsers podem realizar sincronização em background, onde você armazena uma certa ação que não pode ser executada agora, e executa quando a conexão com a internet for restabelecida.
+Quando a conexão da internet for restabelecida, o browser emite um evento para assim poder realizar as ações necessárias.
+
+#### Service Worker Lifecycle
+
+Fases do ciclo de vida do Service Worker.
