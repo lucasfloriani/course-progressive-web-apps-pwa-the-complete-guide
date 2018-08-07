@@ -84,3 +84,15 @@ Arquivo manifest.json adicionado a sua aplicação, onde este possibilitará a f
   ]
 }
 ```
+
+## Critérios verificados em 2018/08/07 para mostrar o banner de adicionar a homescreen
+
+* Ter um arquivo manifest com:
+  * Conter um **name** ou **short_name**;
+  * Um icone png de 192px e 512px;
+  * Um **start_url**;
+  * Campo **display** precisa ser _fullscreen_, _standalone_ ou _minimal-ui_
+* Ter um **service worker** registrado em seu site;
+* Estar hospedado sobre o protocolo **HTTPS** (requisito para utilizar um service worker);
+
+Com estes critérios atingidos, o Chrome irá disparar o evento _beforeinstallprompt_ que você pode usar para avisar o usuário para instalar seu Progressive Web App.
