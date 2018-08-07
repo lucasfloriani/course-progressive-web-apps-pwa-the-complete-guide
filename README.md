@@ -125,3 +125,12 @@ Por o Internet Explorer não receber as funcionalidades relacionadas as PWAs, po
 <meta name="msapplication-TileColor" content="#fff">
 <meta name="theme-color" content="#3f51b5">
 ```
+
+## O que são Service Workers
+
+São javascript que não rodam na single thread normal de execução dos javascripts das páginas web, rodando em si em uma thread especifica deles, ficando assim separado.
+Rodam em background e são desacoplados do DOM e páginas HTML.
+Contem um escopo especifico, como por exemplo o dominio da página.
+São disponíveis para todas as páginas da sua aplicação, baseadas em seu dominio (dominio.com.br).
+Funcionam mesmo após as páginas da aplicação serem fechadas.
+São bons para reagir a **eventos especificos**, como por exemplo eventos de **push notification**.
