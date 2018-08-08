@@ -200,3 +200,9 @@ Este link não seria especifico aos service workers, ele é aplicavel a todos os
 
 **Qual a diferença entre Web Workers e Service Workers?**
 R: Service Workers são um tipo especial de Web Workers. Web Workers tambem rodam em uma thread em background, desacoplado do DOM. Eles não continuam executando depois que a página é fechada. O Service Worker por outro lado, continua executando (dependendo do sistema operacional) e tambem é desacoplado de uma página.
+
+## Cache API
+
+São salvos em formato Key (HTTP Request enviados, ou seja, a URL requisitada), Value (Response da requisição da URL).
+Podem ser acessados tanto pelos service workers, como por Javascript "normal".
+Usamos este recurso para pegar a resposta da requisição do cache ao invez de realizar a requisição novamente, onde em alguns casos, não há internet.
