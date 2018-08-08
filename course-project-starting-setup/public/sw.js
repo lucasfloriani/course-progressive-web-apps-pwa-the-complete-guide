@@ -12,7 +12,6 @@ self.addEventListener('activate', function(event) {
 });
 
 self.addEventListener('fetch', function(event) {
-  console.log('[Service Worker] Fetching something ...', event);
   // respondWith possibilita reescrever os dados que são enviados
   // de resposta a página como um proxy.
   event.respondWith(fetch(event.request));
