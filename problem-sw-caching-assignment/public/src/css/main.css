@@ -1,0 +1,12 @@
+/* (6) */
+.box {
+  margin: auto;
+  width: 120px;
+  height: 120px;
+  background-color: #fa923f;
+  display: none;
+}
+
+.box.visible {
+  display: block;
+}
