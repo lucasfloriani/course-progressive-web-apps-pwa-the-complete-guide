@@ -61,6 +61,10 @@ self.addEventListener('activate', function(event) {
   return self.clients.claim();
 });
 
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+/*-*-*-*-*-*-*-*-* Estratégias *-*-*-*-*-*-*-*-*/
+/*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*/
+
 // Estratégia 'Cache with Network Fallback'
 // self.addEventListener('fetch', function(event) {
 //   // respondWith possibilita reescrever os dados que são enviados
@@ -130,7 +134,11 @@ self.addEventListener('activate', function(event) {
 //   );
 // });
 
+
 // Estratégia 'Cache, then Network' com suporte offline
+// Tenta pegar o cache primeiro, se o network for mais rapido aborta o cache
+// e adiciona a resposta do network na tela e no cache.
+//
 // self.addEventListener('fetch', function(event) {
 //   // respondWith possibilita reescrever os dados que são enviados
 //   // de resposta a página como um proxy.
@@ -142,7 +150,7 @@ self.addEventListener('activate', function(event) {
 //         .then(function(cache) {
 //           return fetch(event.request)
 //             .then(function(res) {
-//               cache.put(event.request, res.clone());
+//               cache.put(event.request.url, res.clone());
 //               return res;
 //             })
 //         })
@@ -189,7 +197,7 @@ self.addEventListener('fetch', function(event) {
         .then(function(cache) {
           return fetch(event.request)
             .then(function(res) {
-              cache.put(event.request, res.clone());
+              cache.put(event.request.url, res.clone());
               return res;
             })
         })
